@@ -1,0 +1,22 @@
+{
+  "name": "unpacking-webpack",
+  "version": "1.0.0",
+  "description": "This site is to help facilitate a demo for a talk titled Unpacking Webpack.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/swolf_za/Talks.git"
+  },
+  "keywords": [
+    "webpack"
+  ],
+  "author": "Alexander Pittendrigh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/swolf_za/Talks/issues"
+  },
+  "homepage": "https://gitlab.com/swolf_za/Talks#README"
+}
