@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://gitlab.com/swolf_za/Talks/issues"
   },
-  "homepage": "https://gitlab.com/swolf_za/Talks#README"
+  "homepage": "https://gitlab.com/swolf_za/Talks#README",
+  "devDependencies": {
+    "eslint": "^3.19.0"
+  }
 }
