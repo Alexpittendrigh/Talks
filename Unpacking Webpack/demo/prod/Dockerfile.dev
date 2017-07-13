@@ -1,0 +1,11 @@
+FROM node:6.9.5
+
+# Install app dependencies
+COPY ./src/faifa-node-fake-api/package.json /www/package.json
+RUN cd /www; npm install
+RUN npm install json-server -g
+
+VOLUME /www
+WORKDIR /www
+
+EXPOSE 2999

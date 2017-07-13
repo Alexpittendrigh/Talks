@@ -1,0 +1,18 @@
+{
+  "name": "faifa-node-api",
+  "version": "0.0.0",
+  "description": "Find an IFA Node Web API",
+  "main": "index.js",
+  "scripts": {
+    "dev": "json-server --watch fakedb.json --port 81",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matthew van der Velden",
+  "license": "ISC",
+  "engines": {
+    "node": "6.9.5"
+  },
+  "dependencies": {
+    "json-server": "0.9.4"
+  }
+}

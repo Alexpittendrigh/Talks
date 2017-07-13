@@ -1,4 +1,5 @@
-function dependancy1 () {
+(function dependancy1 () {
   'use strict'
-  
-}()
+
+  console.log('Hello, World!')
+}())
