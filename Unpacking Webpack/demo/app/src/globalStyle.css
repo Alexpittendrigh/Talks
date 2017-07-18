@@ -1,0 +1,43 @@
+button {
+  background-color: #4CAF50;
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.float-right {
+  float: right;
+}
+
+body {
+  margin-left: 10%;
+}
+
+form {
+  width: 30%;
+}
+
+.form-input {
+  display: block;
+  margin-bottom: 2px;
+  width: 100%
+}
+
+.logo {
+  max-width: 300px;
+  max-height: 200px;
+}
+
+.icon {
+  width: 13px;
+  height: 12px;
+  margin-left: 2px;
+}
+
+:local(.table) { border: 1px solid; }
