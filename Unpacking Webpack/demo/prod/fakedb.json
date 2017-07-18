@@ -1,34 +1,32 @@
 {
   "mailingList": [
     {
-      "email": "",
-      "name": ""
-    },
-    {
-      "email": "a.pittendrigh@gmail.com",
+      "id": 1,
+      "email": "my@email.com",
       "name": "Alexander Pittendrigh"
     },
     {
-      "email": "daphne.calitz@gmail.com",
-      "name": "Daphne Calitz"
-    },
-    {
+      "id": 3,
       "email": "another",
       "name": "email"
     },
     {
+      "id": 4,
       "email": "sss",
       "name": "ss"
     },
     {
+      "id": 5,
       "email": "sdasdas",
       "name": "asdasd"
     },
     {
+      "id": 6,
       "email": "test",
       "name": "test"
     },
     {
+      "id": 7,
       "email": "yay",
       "name": "yay"
     }
