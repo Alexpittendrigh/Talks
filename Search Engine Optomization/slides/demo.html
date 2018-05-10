@@ -175,7 +175,7 @@
         </section>
         <section>
           <h2>Forms</h2>
-          <img src="./images/dog_logic.jpg" />
+          <img style="border: none; box-shadow: none; background-color: transparent" src="./images/dog_logic.jpg" />
         </section>
         <section>
           Don't hide content behind buttons or forms
@@ -202,9 +202,10 @@
 
                 User-agent: Mozilla/5.0
                  .... (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
-                Disallow: /
+                Disallow: /admin/
 
                 User-agent: *
+                Crawl-delay: 120 (this is in milliseconds)
                 Disallow: /admin/
 					      </code></pre>
         </section>
@@ -233,12 +234,13 @@
           <br /> For links to resources, the talk can be found at https://github.com/a-pittendrigh/Talks
         </section>
         <section style="color: white; ">
-          <h2>Resources</h2>
+          <h2 style="color: white">Resources</h2>
           <ul>
             <li>https://webmasters.googleblog.com/2015/10/deprecating-our-ajax-crawling-scheme.html</li>
             <li>https://webmasters.googleblog.com</li>
             <li>http://static.googleusercontent.com/media/www.google.co.uk/en/uk/intl/en_uk/webmasters/docs/search-engine-optimization-starter-guide-en-gb.pdf</li>
             <li>https://www.keycdn.com/blog/web-crawlers/</li>
+            <li>https://moz.com/learn/seo/robotstxt</li>
           </ul>
         </section>
       </section>
