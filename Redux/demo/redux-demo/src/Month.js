@@ -9,21 +9,36 @@ import {
 import { Day } from './day.js'
 
 function MonthRenderer({
+  year,
   month,
   todos
 }) {
+  const firstDayOfMonth = new Date(year, month, 1);
+  const firstWeekDayOfMonth = firstDayOfMonth.getDay();
+  const daysFromLastMonth = [];
+  console.log('*** firstWeekDayOfMonth', firstWeekDayOfMonth);
+  if (firstWeekDayOfMonth > 1) {
+    var d = new Date(year, month, 1);
+    for (let daysPast = 1; daysPast <= firstWeekDayOfMonth - 1; daysPast++) {
+      console.log('***** daysPast', daysFromLastMonth - daysPast);
+      d.setDate(d.getDate() - 1);
+      daysFromLastMonth.push(<Day key={`${month-1}/${d.getDate()}`} month={month-1} day={d.getDate()} year={year} fromLastMonth />);
+    }
+  }
+
   return <div>
     <h1>
-      { getMonthName(month) }
+      { getMonthName(month) } { year }
     </h1>
-    { renderDays(month, todos) }
+    { [ ...daysFromLastMonth, ...renderDays(year, month, todos) ] }
   </div>;
 }
 
-function renderDays(month, todos) {
+function renderDays(year, month, todos) {
   let days = [];
+
   forEachObjIndexed((todos, day) => {
-    days = append(<Day key={`${month}/${day}`} todos={todos} month={month} day={day} />, days);
+    days = append(<Day key={`${month}/${day}`} todos={todos} month={month} day={day} year={year} />, days);
   }, todos[month]);
   return days;
 }

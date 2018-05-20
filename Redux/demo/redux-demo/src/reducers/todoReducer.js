@@ -5,7 +5,7 @@ const initialState = {
   todos: {}
 };
 
-for (let month = 1; month <= 12; month++) {
+for (let month = 0; month < 12; month++) {
   const todos = initialState.todos;
   const currentMonth = {};
   let currentDate = new Date((new Date().getYear()), month, 1, 0, 0, 0, 0);
