@@ -1,0 +1,26 @@
+
+Title: An attempt at simplifying Redux
+
+Outline:
+- Intro to Redux (What is it?)
+- An attempt at making Redux easier to understand
+- Things it does for your project
+- Things I learnt you shouldn't do with Redux
+- Testing
+- Middleware
+- Do you need it?
+
+In my experience the audience at the user group is usually a mixed bunch; - people who've never heard of thing thing you're talking about. people who have a little experience with the thing, people who've used the thing a lot. I think this is probably true for Redux, so I want to structure the talk to cater for all levels of audience.
+
+Synopsis;
+
+Redux is a seemingly complicated stage management tool, but it doesn't need to be.
+Together we will attempt to break Redux down to a simpler form, so that the lifecycle is almost transparent.
+Redux can easily be used with React, Vue, and Angular, so we'll look at testing, some of the side effects of Redux, some of the things you shouldn't do.
+
+Let me know what you think, I'm worried there'll be too much to cover.
+
+Kind Regards,
+Alexander Pittendrigh
+
+
