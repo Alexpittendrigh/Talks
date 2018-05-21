@@ -1,7 +1,16 @@
+import { mergeDeepRight } from 'ramda';
 import { daysInMonth } from '../daysInMonth.js';
+import { addTodo } from '../actions.js';
 
 const initialState = {
-  todos: {}
+  todos: {},
+  showCreateModal: false,
+  newTodo: {
+    day: null,
+    month: null,
+    year: null,
+    todo: null
+  }
 };
 
 for (let month = 0; month < 12; month++) {
@@ -15,6 +24,20 @@ for (let month = 0; month < 12; month++) {
   todos[month] = currentMonth;
 }
 
+const actionHandlers = {};
+actionHandlers[addTodo] = (state, { day, month, year }) => {
+  return mergeDeepRight(state, {
+    showCreateModal: true,
+    newTodo: {
+      day, month, year
+    }
+  });
+};
+// https://medium.freecodecamp.org/reducing-the-reducer-boilerplate-with-createreducer-86c46a47f3e2
 export function todo(state = initialState, action) {
+  if (actionHandlers.hasOwnProperty(action.type)){
+    return actionHandlers[action.type](state, action);
+  }
+
   return state;
 }
