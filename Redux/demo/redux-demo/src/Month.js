@@ -16,11 +16,9 @@ function MonthRenderer({
   const firstDayOfMonth = new Date(year, month, 1);
   const firstWeekDayOfMonth = firstDayOfMonth.getDay();
   const daysFromLastMonth = [];
-  console.log('*** firstWeekDayOfMonth', firstWeekDayOfMonth);
   if (firstWeekDayOfMonth > 1) {
     var d = new Date(year, month, 1);
     for (let daysPast = 1; daysPast <= firstWeekDayOfMonth - 1; daysPast++) {
-      console.log('***** daysPast', daysFromLastMonth - daysPast);
       d.setDate(d.getDate() - 1);
       daysFromLastMonth.push(<Day key={`${month-1}/${d.getDate()}`} month={month-1} day={d.getDate()} year={year} fromLastMonth />);
     }
@@ -43,10 +41,10 @@ function renderDays(year, month, todos) {
   return days;
 }
 
-const mapStateToProps = ({
+const mapStoreToProps = ({
   todo: { todos }
 }) => ({
   todos
 });
 
-export const Month = connect(mapStateToProps)(MonthRenderer);
+export const Month = connect(mapStoreToProps)(MonthRenderer);

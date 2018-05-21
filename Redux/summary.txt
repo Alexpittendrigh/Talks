@@ -3,6 +3,9 @@ Title: An attempt at simplifying Redux
 
 Outline:
 - Intro to Redux (What is it?)
+
+
+
 - An attempt at making Redux easier to understand
 - Things it does for your project
 - Things I learnt you shouldn't do with Redux
