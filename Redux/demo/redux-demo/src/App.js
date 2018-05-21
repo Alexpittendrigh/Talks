@@ -13,7 +13,7 @@ class App extends Component {
         <header className="App-header">
           Redux Stuff
         </header>
-        <div>
+        <div className='calendar'>
           <Month month={new Date().getMonth()} year={2018} />
         </div>
       </div>

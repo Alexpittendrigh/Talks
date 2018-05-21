@@ -29,11 +29,21 @@
 
 .day {
     border-style: solid;
-    width: 14.5%;
+    width: 13.76%;
     display: inline-block;
     margin: 1px;
+    float: left;
+}
+
+.weekend.day {
+    background-color: lightgray;
 }
 
 .prev-month.day {
-    boder-style: dotted;
+    border-style: dotted;
+}
+
+.calendar {
+    margin-left: 10%;
+    margin-right: 10%;
 }

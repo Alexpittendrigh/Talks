@@ -1,4 +1,3 @@
-// import { assoc } from 'ramda';
 import { daysInMonth } from '../daysInMonth.js';
 
 const initialState = {
