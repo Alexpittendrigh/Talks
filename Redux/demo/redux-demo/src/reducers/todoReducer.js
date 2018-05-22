@@ -40,7 +40,6 @@ actionHandlers[SHOW_CREATE_TODO_MODAL] = (state, { day, month, year }) => {
 };
 
 actionHandlers[SET_TEXT] = (state, { text }) => {
-  console.log('*** setting the text!', text);
   return assocPath([ 'newTodo', 'todo' ], text, state);
 };
 

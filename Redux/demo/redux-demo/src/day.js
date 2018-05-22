@@ -11,8 +11,9 @@ DayRenderer.propTypes = {
 }
 
 function DayRenderer({ month, day, year, fromLastMonth }) {
-  const currentDate = new Date(2018, month, day);
-  const isWeekendDate = currentDate.getDay() === 0 || currentDate.getDay() === 6;
+  const now = new Date();
+  const thisDate = new Date(2018, month, day);
+  const isWeekendDate = thisDate.getDay() === 0 || thisDate.getDay() === 6;
   let classNames = 'day';
   if (fromLastMonth) {
     classNames += ' prev-month';
@@ -22,7 +23,7 @@ function DayRenderer({ month, day, year, fromLastMonth }) {
   }
   return <div className={classNames}>
     <h3>{ day } </h3>
-    <Todo year={year} month={month} day={day} />
+    <Todo year={year} month={month} day={day} past={now < thisDate}/>
   </div>;
 }
 
