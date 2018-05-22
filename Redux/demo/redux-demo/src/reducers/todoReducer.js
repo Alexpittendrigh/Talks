@@ -1,4 +1,4 @@
-import { mergeDeepRight, assocPath } from 'ramda';
+import { mergeDeepRight, path, assocPath, compose, append, assoc } from 'ramda';
 import { daysInMonth } from '../daysInMonth.js';
 import {
   SHOW_CREATE_TODO_MODAL,
@@ -46,12 +46,11 @@ actionHandlers[SET_TEXT] = (state, { text }) => {
 
 actionHandlers[ADD_TODO] = (state) => {
   const { day, month, todo } = state.newTodo;
-  const changes = {
-    newTodo: initialState.newTodo,
-    showCreateModal: false
-  };
-  changes[month][day] = todo;
-  return mergeDeepRight(state, changes);
+  return compose(
+    assoc('showCreateModal', false),
+    (newState) => (mergeDeepRight(newState, { newTodo: initialState.newTodo })),
+    assocPath(['todos', month, day], append(todo, path(['todos', month, day], state)))
+    )(state);
 };
 
 actionHandlers[CANCEL_CREATE_TODO] = (state) => {
