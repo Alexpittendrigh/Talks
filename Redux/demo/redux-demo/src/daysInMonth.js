@@ -4,7 +4,6 @@ export function daysInMonth(date) {
   let daysInMonth;
   for (daysInMonth = currentDate.getDate(); currentMonth === currentDate.getMonth(); daysInMonth++) {
     currentDate.setDate(daysInMonth);
-    console.log(currentDate, daysInMonth);
   }
   return daysInMonth - 1;
 }

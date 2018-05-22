@@ -35,6 +35,10 @@
     float: left;
 }
 
+.day.heading {
+    border: none;
+}
+
 .weekend.day {
     background-color: lightgray;
 }

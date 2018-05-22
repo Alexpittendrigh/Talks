@@ -28,15 +28,27 @@ function MonthRenderer({
     <h1>
       { getMonthName(month) } { year }
     </h1>
-    { [ ...daysFromLastMonth, ...renderDays(year, month, todos) ] }
+    <div className='day heading'><h2>Monday</h2></div>
+         <div className='day heading'><h2>Tuesday</h2></div>
+         <div className='day heading'><h2>Wednesday</h2></div>
+         <div className='day heading'><h2>Thursday</h2></div>
+         <div className='day heading'><h2>Friday</h2></div>
+         <div className='day heading'><h2>Saturday</h2></div>
+         <div className='day heading'><h2>Sunday</h2></div>
+         { [ ...daysFromLastMonth, ...renderDays(year, month, todos) ] }
   </div>;
 }
 
 function renderDays(year, month, todos) {
   let days = [];
-
   forEachObjIndexed((todos, day) => {
-    days = append(<Day key={`${month}/${day}`} todos={todos} month={month} day={day} year={year} />, days);
+    days = append(<Day
+                    key={`${month}/${day}`}
+                    todos={todos}
+                    month={month}
+                    day={Number.parseInt(day, 10)}
+                    year={year} />,
+                  days);
   }, todos[month]);
   return days;
 }

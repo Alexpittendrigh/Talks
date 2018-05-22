@@ -10,17 +10,17 @@ import {
   bindActionCreators
 } from 'redux';
 import {
-  addTodo
+  showTodoModal
 } from './actions.js';
 
 import './App.css';
 
 TodoRenderer.propTypes = {
-  addTodo: PropTypes.func.isRequired,
+  showTodoModal: PropTypes.func.isRequired,
   year: PropTypes.number.isRequired,
   month: PropTypes.number.isRequired,
   day: PropTypes.number.isRequired,
-  todo: PropTypes.array.isRequired
+  todos: PropTypes.object.isRequired
 }
 
 function TodoRenderer({
@@ -28,11 +28,19 @@ function TodoRenderer({
   month,
   day,
   todos,
-  addTodo
+  showTodoModal
 }) {
   return (
     <div>
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+      <button
+        type="button"
+        className="btn btn-primary"
+        data-toggle="modal"
+        data-target="#exampleModalCenter"
+        onClick={() => {
+          showTodoModal(day, month, year)}
+        }
+        >
         New Todo
       </button>
       <ul>
@@ -55,7 +63,7 @@ const mapStateToProps = ({
 });
 
 const mapDispatchToProps = (dispatch) => (bindActionCreators({
-  addTodo
+  showTodoModal
 }, dispatch))
 
-export const Todo = connect(mapStateToProps)(TodoRenderer);
+export const Todo = connect(mapStateToProps, mapDispatchToProps)(TodoRenderer);
