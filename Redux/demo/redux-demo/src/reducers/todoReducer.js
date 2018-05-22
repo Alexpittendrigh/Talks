@@ -4,17 +4,23 @@ import {
   SHOW_CREATE_TODO_MODAL,
   SET_TEXT,
   ADD_TODO,
-  CANCEL_CREATE_TODO
+  CANCEL_CREATE_TODO,
+  SHOW_TODOS
 } from '../actions.js';
 
 const initialState = {
   todos: {},
   showCreateModal: false,
+  showCurrentDayModal: false,
   newTodo: {
     day: null,
     month: null,
     year: null,
     todo: ''
+  },
+  currentDay: {
+    day: null,
+    month: null
   }
 };
 
@@ -56,6 +62,17 @@ actionHandlers[CANCEL_CREATE_TODO] = (state) => {
   return mergeDeepRight(state, {
     newTodo: initialState.newTodo,
     showCreateModal: false
+  });
+};
+
+actionHandlers[SHOW_TODOS] = (state, { day, month }) => {
+  console.log('here!');
+  return mergeDeepRight(state, {
+    showCurrentDayModal: true,
+    currentDay: {
+      day,
+      month
+    }
   });
 };
 

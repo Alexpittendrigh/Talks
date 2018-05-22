@@ -20,3 +20,9 @@ export const CANCEL_CREATE_TODO = 'CANCEL_CREATE_TODO';
 export const cancelCreateTodo = () => ({
   type: CANCEL_CREATE_TODO
 });
+export const SHOW_TODOS = 'SHOW_TODOS';
+export const showTodos = (month, day) => ({
+  type: SHOW_TODOS,
+  day,
+  month
+});

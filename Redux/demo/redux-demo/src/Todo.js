@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  map,
   reduce
 } from 'ramda';
 import {
@@ -11,7 +10,8 @@ import {
   bindActionCreators
 } from 'redux';
 import {
-  showTodoModal
+  showTodoModal,
+  showTodos
 } from './actions.js';
 
 import './App.css';
@@ -31,23 +31,13 @@ function TodoRenderer({
   day,
   todos,
   showTodoModal,
-  past
+  past,
+  showTodos
 }) {
   const todo = reduce(reduceTodos, {done: 0, todo: 0}, todos[month][day]);
   return (
-    <div>
-    { past && 
-    <button
-    type="button"
-    className="btn btn-primary"
-    data-toggle="modal"
-    data-target="#exampleModalCenter"
-    onClick={() => {
-      showTodoModal(day, month, year)}
-    }
-    >
-    New Todo
-    </button> }
+    <div className='click-able'  onClick={() => { showTodos(month, day)}}>
+    { renderAddTodoButton(past, showTodoModal, day, month, year) }
     <br/>
     Done: { todo.done }
     <br />
@@ -56,14 +46,28 @@ function TodoRenderer({
   );
 }
 
-function renderTodo(todo) {
-  return <li>{todo}</li>
+function renderAddTodoButton(past, showTodoModal, day, month, year) {
+  if (past) {
+    return null;
+  }
+  return (
+    <button
+      type="button"
+      className="btn btn-primary"
+      data-toggle="modal"
+      data-target="#exampleModalCenter"
+      onClick={() => {
+        showTodoModal(day, month, year)
+      }}
+    >
+    New Todo
+  </button>);
 }
 
 function reduceTodos(accumulator, todo) {
   return {
     done: accumulator.done += (todo.done ? 1 : 0),
-    todo: accumulator.done += (!todo.done ? 0 : 1)
+    todo: accumulator.todo += (!todo.done ? 1 : 0)
   }
 }
 
@@ -76,7 +80,8 @@ const mapStateToProps = ({
 });
 
 const mapDispatchToProps = (dispatch) => (bindActionCreators({
-  showTodoModal
+  showTodoModal,
+  showTodos
 }, dispatch))
 
 export const Todo = connect(mapStateToProps, mapDispatchToProps)(TodoRenderer);
