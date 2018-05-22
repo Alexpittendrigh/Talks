@@ -6,6 +6,7 @@ import {
 import {
   bindActionCreators
 } from 'redux';
+import { map } from 'ramda';
 import {
   addTodo,
   setTodoText,
@@ -31,7 +32,8 @@ function ModalRenderer({
   setTodoText,
   day,
   month,
-  showCurrentDayModal
+  showCurrentDayModal,
+  todos
 }) {
   console.log('current day', showCurrentDayModal, month, day);
 
@@ -56,7 +58,7 @@ function ModalRenderer({
       value={todo}
     />
   </form>);
-  const form = showCreateModal ? newTodo : showAll;
+  const form = showCreateModal ? newTodo : showAllTodos(todos, month, day);
   const showModal = showCreateModal || showCurrentDayModal;
   return (
     <div style={{display: (showModal ? 'block' : 'none')}}
@@ -89,6 +91,19 @@ function ModalRenderer({
       </div>
     </div>
   );
+}
+
+function renderTodo(todo) {
+  return <li>{todo}</li>;
+}
+
+function showAllTodos(todos, month, day) {
+  if (day == null) {
+    return null;
+  }
+  return (<form>
+    { map(renderTodo, todos[month][day]) }
+  </form>);
 }
 
 const mapStateToProps = (state) => {
