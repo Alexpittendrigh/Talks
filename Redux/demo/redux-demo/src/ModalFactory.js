@@ -60,6 +60,7 @@ function ModalRenderer({
   </form>);
   const form = showCreateModal ? newTodo : showAllTodos(todos, month, day);
   const showModal = showCreateModal || showCurrentDayModal;
+  const title = showCreateModal ? 'New Todo' : `Todos for 2018/${month}/${day}`;
   return (
     <div style={{display: (showModal ? 'block' : 'none')}}
     className={"modal fade " + (showModal ? "show" : "")}
@@ -71,7 +72,7 @@ function ModalRenderer({
       <div className="modal-dialog modal-dialog-centered" role="document">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title" id="exampleModalLongTitle">New Todo</h5>
+            <h5 className="modal-title" id="exampleModalLongTitle">{title}</h5>
             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
