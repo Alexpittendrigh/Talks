@@ -23,7 +23,7 @@ function DayRenderer({ month, day, year, fromLastMonth }) {
   }
   return <div className={classNames}>
     <h3>{ day } </h3>
-    <Todo year={year} month={month} day={day} past={now > thisDate}/>
+    <Todo year={year} month={month} day={day} past={now.getMonth() > thisDate.getMonth() || (now.getDate() > thisDate.getDate() && now > thisDate)}/>
   </div>;
 }
 

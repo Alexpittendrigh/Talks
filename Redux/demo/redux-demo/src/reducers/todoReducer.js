@@ -27,7 +27,7 @@ const initialState = {
 for (let month = 0; month < 12; month++) {
   const todos = initialState.todos;
   const currentMonth = {};
-  let currentDate = new Date((new Date().getYear()), month, 1, 0, 0, 0, 0);
+  let currentDate = new Date((new Date().getYear()), month, 0, 0, 0, 0, 0);
   const daysInCurrentMonth = daysInMonth(currentDate);
   for (let currentDay = 1; currentDay <= daysInCurrentMonth - 1; currentDay++) {
     currentMonth[currentDay] = [];

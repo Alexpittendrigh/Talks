@@ -5,5 +5,5 @@ export function daysInMonth(date) {
   for (daysInMonth = currentDate.getDate(); currentMonth === currentDate.getMonth(); daysInMonth++) {
     currentDate.setDate(daysInMonth);
   }
-  return daysInMonth - 1;
+  return daysInMonth;
 }
