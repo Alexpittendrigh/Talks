@@ -16,9 +16,9 @@ export const setTodoText = (text) => ({
   type: SET_TEXT,
   text
 });
-export const CANCEL_CREATE_TODO = 'CANCEL_CREATE_TODO';
-export const cancelCreateTodo = () => ({
-  type: CANCEL_CREATE_TODO
+export const CLOSE_MODALS = 'CLOSE_MODALS';
+export const closeModals = () => ({
+  type: CLOSE_MODALS
 });
 export const SHOW_TODOS = 'SHOW_TODOS';
 export const showTodos = (month, day) => ({

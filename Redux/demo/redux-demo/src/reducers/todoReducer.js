@@ -4,7 +4,7 @@ import {
   SHOW_CREATE_TODO_MODAL,
   SET_TEXT,
   ADD_TODO,
-  CANCEL_CREATE_TODO,
+  CLOSE_MODALS,
   SHOW_TODOS
 } from '../actions.js';
 
@@ -58,15 +58,19 @@ actionHandlers[ADD_TODO] = (state) => {
     )(state);
 };
 
-actionHandlers[CANCEL_CREATE_TODO] = (state) => {
+actionHandlers[CLOSE_MODALS] = (state) => {
   return mergeDeepRight(state, {
     newTodo: initialState.newTodo,
-    showCreateModal: false
+    showCreateModal: false,
+    showCurrentDayModal: false,
+    currentDay: initialState.currentDay
   });
 };
 
 actionHandlers[SHOW_TODOS] = (state, { day, month }) => {
-  console.log('here!');
+  if (state.showCreateModal) {
+    return state;
+  }
   return mergeDeepRight(state, {
     showCurrentDayModal: true,
     currentDay: {

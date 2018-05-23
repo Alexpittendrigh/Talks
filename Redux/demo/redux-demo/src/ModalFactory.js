@@ -10,7 +10,7 @@ import { map } from 'ramda';
 import {
   addTodo,
   setTodoText,
-  cancelCreateTodo
+  closeModals
 } from './actions.js';
 
 import './App.css';
@@ -84,7 +84,7 @@ function ModalRenderer({
             <button type="button" className="btn btn-primary" onClick={addTodo}>
               Save
             </button>
-            <button type="button" className="btn btn-secondary" onClick={cancelCreateTodo}>
+            <button type="button" className="btn btn-secondary" onClick={closeModals}>
               Cancel
             </button>
           </div>
@@ -129,7 +129,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => (bindActionCreators({
   addTodo,
   setTodoText,
-  cancelCreateTodo
+  closeModals
 }, dispatch));
 
 export const ModalFactory = connect(mapStateToProps, mapDispatchToProps)(ModalRenderer);
