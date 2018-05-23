@@ -10,7 +10,8 @@ import { map } from 'ramda';
 import {
   addTodo,
   setTodoText,
-  closeModals
+  closeModals,
+  toggleTodo
 } from './actions.js';
 
 import './App.css';
@@ -33,7 +34,8 @@ function ModalRenderer({
   day,
   month,
   showCurrentDayModal,
-  todos
+  todos,
+  toggleTodo
 }) {
 
   const newTodo = (<form>
@@ -57,7 +59,7 @@ function ModalRenderer({
       value={todo}
     />
   </form>);
-  const form = showCreateModal ? newTodo : showAllTodos(todos, month, day);
+  const form = showCreateModal ? newTodo : showAllTodos(todos, month, day, toggleTodo);
   const showModal = showCreateModal || showCurrentDayModal;
   const title = showCreateModal ? 'New Todo' : `Todos for 2018/${month}/${day}`;
   return (
@@ -93,17 +95,28 @@ function ModalRenderer({
   );
 }
 
-function renderTodo(todo, month, day, index) {
-  return <li key={`${month}-${day}-${index}`}> {todo}</li>;
+function renderTodo(todo, month, day, index, toggleTodo) {
+  return (<div class="custom-control custom-checkbox">
+    <input
+      onClick={() => {
+          toggleTodo(month, day, 0, index);
+      }}
+      checked={todo.done}
+      type="checkbox"
+      class="custom-control-input"
+      id="customCheck1" />
+    <label class="custom-control-label" for="customCheck1">{todo.todo}</label>
+  </div>);
+  {/* return <li key={`${month}-${day}-${index}`}> {todo}</li>; */}
 }
 
-function showAllTodos(todos, month, day) {
+function showAllTodos(todos, month, day, toggleTodo) {
   if (day == null) {
     return null;
   }
   let todoIndex = 0;
   return (<form>
-    { map((todo) => (renderTodo(todo, month, day, todoIndex++)), todos[month][day]) }
+    { map((todo) => (renderTodo(todo, month, day, todoIndex++, toggleTodo)), todos[month][day]) }
   </form>);
 }
 
@@ -129,7 +142,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => (bindActionCreators({
   addTodo,
   setTodoText,
-  closeModals
+  closeModals,
+  toggleTodo
 }, dispatch));
 
 export const ModalFactory = connect(mapStateToProps, mapDispatchToProps)(ModalRenderer);

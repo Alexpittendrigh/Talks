@@ -6,6 +6,15 @@ export const addTodo = () => ({
   type: ADD_TODO
 });
 
+export const TODO_TOGGLE = 'TODO_TOGGLE';
+export const toggleTodo = (month, day, year, index) => ({
+  type: TODO_TOGGLE,
+  month,
+  day,
+  year,
+  index
+});
+
 export const showTodoModal = (day, month, year) => ({
   type: SHOW_CREATE_TODO_MODAL,
   day,
