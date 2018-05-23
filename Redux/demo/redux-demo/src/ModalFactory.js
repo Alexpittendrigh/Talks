@@ -28,14 +28,13 @@ function ModalRenderer({
   showCreateModal,
   todo,
   addTodo,
-  cancelCreateTodo,
+  closeModals,
   setTodoText,
   day,
   month,
   showCurrentDayModal,
   todos
 }) {
-  console.log('current day', showCurrentDayModal, month, day);
 
   const newTodo = (<form>
   Todo: &nbsp;
@@ -94,16 +93,17 @@ function ModalRenderer({
   );
 }
 
-function renderTodo(todo) {
-  return <li>{todo}</li>;
+function renderTodo(todo, month, day, index) {
+  return <li key={`${month}-${day}-${index}`}> {todo}</li>;
 }
 
 function showAllTodos(todos, month, day) {
   if (day == null) {
     return null;
   }
+  let todoIndex = 0;
   return (<form>
-    { map(renderTodo, todos[month][day]) }
+    { map((todo) => (renderTodo(todo, month, day, todoIndex++)), todos[month][day]) }
   </form>);
 }
 
