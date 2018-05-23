@@ -1,4 +1,4 @@
-import { mergeDeepRight, path, assocPath, compose, append, assoc, state } from 'ramda';
+import { mergeDeepRight, path, assocPath, compose, append, assoc } from 'ramda';
 import { daysInMonth } from '../daysInMonth.js';
 import {
   SHOW_CREATE_TODO_MODAL,

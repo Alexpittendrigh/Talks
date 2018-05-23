@@ -6,7 +6,6 @@ import {
 import {
   bindActionCreators
 } from 'redux';
-import { map } from 'ramda';
 import {
   addTodo,
   setTodoText,
@@ -20,7 +19,6 @@ ModalRenderer.propTypes = {
   showCreateModal: PropTypes.bool.isRequired,
   todo: PropTypes.string.isRequired,
   addTodo: PropTypes.func.isRequired,
-  cancelCreateTodo: PropTypes.func.isRequired,
   day: PropTypes.number,
   month: PropTypes.number
 }
@@ -38,27 +36,20 @@ function ModalRenderer({
   toggleTodo
 }) {
 
-  const newTodo = (<form>
-  Todo: &nbsp;
-  <input
-  type='text'
-  onChange={(event) => {
-    setTodoText(event.target.value)
-  }}
-  value={todo}
-  />
-  </form>);
-
-  const showAll = (<form>
-    all: &nbsp;
+  const newTodo = (<form onSubmit={(event) => {
+    event.preventDefault();
+    addTodo();
+    }}>
+    Todo: &nbsp;
     <input
-      type='text'
-      onChange={(event) => {
-          setTodoText(event.target.value)
-      }}
-      value={todo}
+    type='text'
+    onChange={(event) => {
+    setTodoText(event.target.value)
+    }}
+    value={todo}
     />
   </form>);
+
   const form = showCreateModal ? newTodo : showAllTodos(todos, month, day, toggleTodo);
   const showModal = showCreateModal || showCurrentDayModal;
   const title = showCreateModal ? 'New Todo' : `Todos for 2018/${month}/${day}`;
@@ -82,11 +73,13 @@ function ModalRenderer({
             { form }
           </div>
           <div className="modal-footer">
+            { showCreateModal &&
             <button type="button" className="btn btn-primary" onClick={addTodo}>
               Save
             </button>
+            }
             <button type="button" className="btn btn-secondary" onClick={closeModals}>
-              Cancel
+              { showCurrentDayModal ? 'OK' : 'Cancel' }
             </button>
           </div>
         </div>
@@ -96,27 +89,27 @@ function ModalRenderer({
 }
 
 function renderTodo(todo, month, day, index, toggleTodo) {
-  return (<div class="custom-control custom-checkbox">
+  return (<div
+            key={`${month}-${day}-${index}`}
+            class="custom-control custom-checkbox">
     <input
       onClick={() => {
           toggleTodo(month, day, 0, index);
       }}
       checked={todo.done}
       type="checkbox"
-      class="custom-control-input"
-      id="customCheck1" />
-    <label class="custom-control-label" for="customCheck1">{todo.todo}</label>
+      className="custom-control-input"
+      id={`customCheck${index}`} />
+    <label className="custom-control-label" htmlFor={`customCheck${index}`}>{todo.todo}</label>
   </div>);
-  {/* return <li key={`${month}-${day}-${index}`}> {todo}</li>; */}
 }
 
 function showAllTodos(todos, month, day, toggleTodo) {
   if (day == null) {
     return null;
   }
-  let todoIndex = 0;
   return (<form>
-    { map((todo) => (renderTodo(todo, month, day, todoIndex++, toggleTodo)), todos[month][day]) }
+    { todos[month][day].map((todo, index) => (renderTodo(todo, month, day, index, toggleTodo))) }
   </form>);
 }
 
